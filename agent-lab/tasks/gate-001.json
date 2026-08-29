@@ -1,0 +1,22 @@
+{
+  "task_id": "gate-001",
+  "title": "Add application version reporting",
+  "objective": "Extend the tiny lab application with a stable version value while preserving the existing greeting behavior.",
+  "allowed_paths": [
+    "agent-lab/app.py",
+    "agent-lab/tests/test_app.py"
+  ],
+  "acceptance_criteria": [
+    "app.py exports APP_VERSION with value 0.1.0",
+    "app.py exports a version() function returning APP_VERSION",
+    "all existing greeting behavior remains unchanged",
+    "tests cover version() and all tests pass"
+  ],
+  "verification": [
+    "python3 -m unittest discover -s agent-lab/tests -v"
+  ],
+  "human_decision_triggers": [
+    "Any need to modify files outside allowed_paths",
+    "Any ambiguity requiring a product or architecture decision"
+  ]
+}
