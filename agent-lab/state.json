@@ -1,8 +1,8 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-003-passed",
+  "status": "gate-004a-active",
   "last_passed_task": "gate-003",
-  "active_task": null,
+  "active_task": "gate-004a",
   "human_required": false,
   "human_decision": {
     "selected": "A",
