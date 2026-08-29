@@ -1,0 +1,35 @@
+{
+  "task_id": "gate-005a",
+  "result": "IMPLEMENTATION_PASS_WAKE_FAILED",
+  "human_intervention_required": false,
+  "implementation": {
+    "result": "PASS",
+    "commit": "35c99b8ac55bf58d425dc69258deffe344cea842",
+    "changed_files": ["agent-lab/app.py"],
+    "scope": "PASS",
+    "ci_run_id": 33273135301,
+    "ci_result": "success",
+    "acceptance": {
+      "readiness_literal_exact": "PASS",
+      "readiness_states_annotation": "PASS",
+      "current_readiness_annotation": "PASS",
+      "status_return_annotation": "PASS",
+      "runtime_behavior_preserved": "PASS"
+    }
+  },
+  "wake_test": {
+    "mechanism": "one-time scheduled ChatGPT run",
+    "result": "FAIL",
+    "scheduled_task_id": "6a933e781b748191a315bd3aa2fa7d1a",
+    "observations": [
+      "scheduled task metadata records a run and is now disabled/completed",
+      "repository state was not advanced by the scheduled run",
+      "no Gate 005A review record was created by the scheduled run",
+      "task push notifications were disabled",
+      "task email notifications were disabled",
+      "user received no completion notification"
+    ]
+  },
+  "conclusion": "Gate 005A implementation passed, but scheduled wake-and-resume was not proven. Do not count external wake-up as a verified capability.",
+  "next_step": "retry with a read-only scheduled GitHub verification task after task notifications are enabled; native GitHub webhook wake remains Gate 005B and requires Work."
+}
