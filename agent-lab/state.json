@@ -1,6 +1,6 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-005a3-awaiting-work-binding",
+  "status": "gate-005a3-ios-work-event-trigger-blocked",
   "last_passed_task": "gate-005a-implementation",
   "active_task": "gate-005a3",
   "human_required": true,
@@ -53,7 +53,14 @@
     "work_prompt_file": "agent-lab/gate-005a3-work-prompt.md",
     "trigger_comment": "GATE005A3_TRIGGER WORK-PERSIST-005A3-20260829",
     "expected_work_result": "GATE005A3_WORK_RETURN WORK-PERSIST-005A3-20260829",
-    "human_step": "create the GitHub event-triggered task from one identifiable Work conversation, then report armed"
+    "ios_attempt": {
+      "result": "BLOCKED_BY_PRODUCT_SURFACE",
+      "observed_message": "available automation interface supports time-based schedules but does not expose GitHub event-trigger configuration",
+      "task_created": false,
+      "github_modified": false
+    },
+    "documentation_conflict": "OpenAI documentation says eligible Plus/Pro users can create GitHub event-triggered Work tasks on supported iOS, Android, and web clients, but the current iOS Work runtime did not expose that capability.",
+    "next_surface": "ChatGPT Work on web"
   },
-  "next_experiment": "fire-gate-005a3-github-trigger-after-work-task-is-armed"
+  "next_experiment": "retry-gate-005a3-work-event-trigger-on-web"
 }
