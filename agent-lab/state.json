@@ -1,7 +1,7 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-001-passed",
-  "last_passed_task": "gate-001",
+  "status": "gate-002-passed-after-auto-correction",
+  "last_passed_task": "gate-002",
   "active_task": null,
   "human_required": false,
   "transport": {
@@ -12,7 +12,16 @@
   "safety": {
     "auto_merge": false,
     "production_actions": false,
-    "scope_enforcement": true
+    "scope_enforcement": true,
+    "protected_tests_mutable_by_agent": false
   },
-  "next_experiment": "gate-002-correction-loop"
+  "verified_capabilities": [
+    "direct agent dispatch",
+    "independent diff review",
+    "independent CI verification",
+    "automatic failure diagnosis",
+    "automatic correction dispatch",
+    "successful correction without human intervention"
+  ],
+  "next_experiment": "gate-003-human-escalation"
 }
