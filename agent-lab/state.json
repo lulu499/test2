@@ -1,9 +1,9 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-005a3-ios-work-event-trigger-blocked",
+  "status": "gate-005a3-web-work-trigger-armed",
   "last_passed_task": "gate-005a-implementation",
   "active_task": "gate-005a3",
-  "human_required": true,
+  "human_required": false,
   "human_decision": {
     "selected": "A",
     "contract": "status() -> str with ready/degraded/maintenance",
@@ -14,7 +14,7 @@
     "orchestrator_to_agent": "github-pr-comment-@cursor",
     "agent_to_orchestrator": "github-pr-comment-and-commit",
     "verification": "github-actions",
-    "persistent_surface_under_test": "ChatGPT Work event-triggered task"
+    "persistent_surface_under_test": "ChatGPT Work event-triggered task on web"
   },
   "safety": {
     "auto_merge": false,
@@ -38,12 +38,12 @@
     "automatic next-task generation after pass",
     "multi-task autonomous continuation without human prompt",
     "gate-005a implementation itself",
-    "scheduled ChatGPT background execution can occur independently"
+    "scheduled ChatGPT background execution can occur independently",
+    "web Work can create and enable GitHub comment-trigger monitoring"
   ],
   "unverified_or_failed_capabilities": [
     "resume the exact existing ChatGPT conversation from a scheduled task",
     "scheduled task GitHub connector action",
-    "native GitHub-event wake-up",
     "event-triggered task returns to exact originating Work conversation"
   ],
   "gate_005": {
@@ -55,12 +55,13 @@
     "expected_work_result": "GATE005A3_WORK_RETURN WORK-PERSIST-005A3-20260829",
     "ios_attempt": {
       "result": "BLOCKED_BY_PRODUCT_SURFACE",
-      "observed_message": "available automation interface supports time-based schedules but does not expose GitHub event-trigger configuration",
-      "task_created": false,
-      "github_modified": false
+      "task_created": false
     },
-    "documentation_conflict": "OpenAI documentation says eligible Plus/Pro users can create GitHub event-triggered Work tasks on supported iOS, Android, and web clients, but the current iOS Work runtime did not expose that capability.",
-    "next_surface": "ChatGPT Work on web"
+    "web_attempt": {
+      "result": "ARMED",
+      "observed_ui": "Created and enabled the GitHub comment-trigger probe; Monitoring · Gate 005A3 Probe",
+      "originating_work_chat_title": "Create GitHub trigger task"
+    }
   },
-  "next_experiment": "retry-gate-005a3-work-event-trigger-on-web"
+  "next_experiment": "observe-where-gate-005a3-event-result-lands"
 }
