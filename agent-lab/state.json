@@ -1,9 +1,17 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-003-active",
+  "status": "gate-003-human-required",
   "last_passed_task": "gate-002",
   "active_task": "gate-003",
-  "human_required": false,
+  "human_required": true,
+  "human_decision": {
+    "question": "Choose the public readiness API contract.",
+    "options": {
+      "A": "status() -> str with ready/degraded/maintenance",
+      "B": "is_ready() -> bool"
+    },
+    "recommended": "A"
+  },
   "transport": {
     "orchestrator_to_agent": "github-pr-comment-@cursor",
     "agent_to_orchestrator": "github-pr-comment-and-commit",
@@ -21,7 +29,9 @@
     "independent CI verification",
     "automatic failure diagnosis",
     "automatic correction dispatch",
-    "successful correction without human intervention"
+    "successful correction without human intervention",
+    "product ambiguity detection",
+    "human escalation without implementation"
   ],
-  "next_experiment": "gate-003-human-escalation"
+  "next_experiment": "gate-003-resume-after-human-decision"
 }
