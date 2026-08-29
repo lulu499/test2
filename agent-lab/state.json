@@ -1,8 +1,8 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-005a3-web-work-trigger-armed",
+  "status": "gate-005a3-same-work-thread-passed-auto-poll-pending",
   "last_passed_task": "gate-005a-implementation",
-  "active_task": "gate-005a3",
+  "active_task": "gate-005a3-auto-poll",
   "human_required": false,
   "human_decision": {
     "selected": "A",
@@ -14,7 +14,7 @@
     "orchestrator_to_agent": "github-pr-comment-@cursor",
     "agent_to_orchestrator": "github-pr-comment-and-commit",
     "verification": "github-actions",
-    "persistent_surface_under_test": "ChatGPT Work event-triggered task on web"
+    "persistent_surface_under_test": "ChatGPT Work condition-watch on web"
   },
   "safety": {
     "auto_merge": false,
@@ -39,29 +39,29 @@
     "multi-task autonomous continuation without human prompt",
     "gate-005a implementation itself",
     "scheduled ChatGPT background execution can occur independently",
-    "web Work can create and enable GitHub comment-trigger monitoring"
+    "web Work can create and enable GitHub comment-trigger monitoring",
+    "Work monitor execution can return into the exact originating Work conversation"
   ],
   "unverified_or_failed_capabilities": [
-    "resume the exact existing ChatGPT conversation from a scheduled task",
-    "scheduled task GitHub connector action",
-    "event-triggered task returns to exact originating Work conversation"
+    "immediate GitHub webhook wake-up",
+    "automatic unattended Work polling detects and handles a fresh GitHub event without Run now"
   ],
   "gate_005": {
     "phase": "005a3",
-    "purpose": "determine whether ChatGPT Work is a persistent orchestration home under GitHub event-triggered execution",
+    "purpose": "determine whether ChatGPT Work is a persistent orchestration home under GitHub-triggered monitoring",
     "probe_nonce": "WORK-PERSIST-005A3-20260829",
-    "work_prompt_file": "agent-lab/gate-005a3-work-prompt.md",
-    "trigger_comment": "GATE005A3_TRIGGER WORK-PERSIST-005A3-20260829",
-    "expected_work_result": "GATE005A3_WORK_RETURN WORK-PERSIST-005A3-20260829",
-    "ios_attempt": {
-      "result": "BLOCKED_BY_PRODUCT_SURFACE",
-      "task_created": false
+    "work_task_id": "6a9359057af881919c96003f6ba1fefe",
+    "timing_mode": "condition_watch",
+    "schedule": "hourly polling",
+    "notifications_enabled": true,
+    "email_enabled": true,
+    "manual_run_result": {
+      "result": "PASS_SAME_WORK_THREAD",
+      "observed_return": "GATE005A3_WORK_RETURN WORK-PERSIST-005A3-20260829",
+      "same_originating_work_chat": true
     },
-    "web_attempt": {
-      "result": "ARMED",
-      "observed_ui": "Created and enabled the GitHub comment-trigger probe; Monitoring · Gate 005A3 Probe",
-      "originating_work_chat_title": "Create GitHub trigger task"
-    }
+    "automatic_poll_result": "PENDING",
+    "important_architecture_finding": "Current Work monitoring is implemented as hourly condition polling, not an immediate GitHub webhook trigger."
   },
-  "next_experiment": "observe-where-gate-005a3-event-result-lands"
+  "next_experiment": "post-a-fresh-trigger-after-the-manual-run-and-let-the-next-hourly-condition-watch-run-without-user-intervention"
 }
