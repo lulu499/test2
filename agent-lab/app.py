@@ -1,6 +1,9 @@
+from typing import Literal
+
 APP_VERSION = "0.1.0"
-READINESS_STATES = ("ready", "degraded", "maintenance")
-_CURRENT_READINESS = "ready"
+ReadinessState = Literal["ready", "degraded", "maintenance"]
+READINESS_STATES: tuple[ReadinessState, ...] = ("ready", "degraded", "maintenance")
+_CURRENT_READINESS: ReadinessState = "ready"
 
 
 def greeting(name: str) -> str:
@@ -21,6 +24,6 @@ def build_info() -> dict:
     return {"version": APP_VERSION, "status": "ready"}
 
 
-def status() -> str:
+def status() -> ReadinessState:
     """Return the public readiness status from the approved contract."""
     return _CURRENT_READINESS
