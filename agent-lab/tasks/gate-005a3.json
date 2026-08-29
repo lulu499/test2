@@ -1,0 +1,38 @@
+{
+  "task_id": "gate-005a3",
+  "parent_gate": "gate-005",
+  "title": "Persistent Work conversation under GitHub event trigger",
+  "objective": "Determine whether a GitHub event-triggered task created from one ChatGPT Work conversation returns its result to that exact Work conversation or creates a separate task-associated conversation.",
+  "surface_under_test": "ChatGPT Work cloud conversation",
+  "repository": "lulu499/test2",
+  "pull_request": 1,
+  "trigger": {
+    "type": "github_pull_request_activity",
+    "event_probe_comment": "GATE005A3_TRIGGER WORK-PERSIST-005A3-20260829"
+  },
+  "success_criteria": [
+    "The event-triggered task is created from one identifiable Work conversation.",
+    "The orchestrator posts the exact trigger probe to PR #1 after the task is armed.",
+    "The event-triggered task runs without manual user prompting.",
+    "The task result appears in the exact same Work conversation that created the task.",
+    "No separate task/result conversation is created for the trigger response."
+  ],
+  "partial_success": [
+    "Event trigger fires but result appears in a separate task-associated conversation."
+  ],
+  "failure_conditions": [
+    "Work is not available on the account.",
+    "GitHub event-triggered tasks are not available despite Work access.",
+    "The configured GitHub trigger does not fire.",
+    "The trigger result cannot be traced to a conversation."
+  ],
+  "safety": {
+    "allowed_external_write": "one non-@cursor PR comment containing only the trigger nonce",
+    "no_code_changes": true,
+    "no_merge": true,
+    "no_cursor_dispatch": true,
+    "no_production_actions": true
+  },
+  "human_step_required": "Create or open a cloud Work conversation and create the GitHub event-triggered task from that exact conversation using the prepared prompt.",
+  "why_human_step_is_required": "The current Chat conversation cannot switch itself into the user's Work UI or bind an event-triggered task to a specific Work conversation."
+}
