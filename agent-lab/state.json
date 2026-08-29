@@ -1,8 +1,8 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-004b-active-autonomous-continuation",
-  "last_passed_task": "gate-004a",
-  "active_task": "gate-004b",
+  "status": "gate-004-passed-autonomous-continuation",
+  "last_passed_task": "gate-004b",
+  "active_task": null,
   "human_required": false,
   "human_decision": {
     "selected": "A",
@@ -32,7 +32,9 @@
     "human escalation without implementation",
     "resume after human decision",
     "post-decision engineering auto-correction",
-    "automatic next-task generation after pass"
+    "automatic next-task generation after pass",
+    "multi-task autonomous continuation without human prompt"
   ],
-  "next_experiment": "gate-004-complete-after-gate-004b"
+  "remaining_boundary": "event-driven wake-up when ChatGPT is not actively running",
+  "next_experiment": "gate-005-event-driven-wakeup"
 }
