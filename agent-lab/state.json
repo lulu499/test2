@@ -1,8 +1,8 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-002-passed-after-auto-correction",
+  "status": "gate-003-active",
   "last_passed_task": "gate-002",
-  "active_task": null,
+  "active_task": "gate-003",
   "human_required": false,
   "transport": {
     "orchestrator_to_agent": "github-pr-comment-@cursor",
