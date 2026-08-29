@@ -1,8 +1,8 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-005a-implementation-passed-wake-failed",
+  "status": "gate-005a-retry-wake-probe-armed",
   "last_passed_task": "gate-005a-implementation",
-  "active_task": null,
+  "active_task": "gate-005a-retry-wake-probe",
   "human_required": false,
   "human_decision": {
     "selected": "A",
@@ -14,7 +14,7 @@
     "orchestrator_to_agent": "github-pr-comment-@cursor",
     "agent_to_orchestrator": "github-pr-comment-and-commit",
     "verification": "github-actions",
-    "wake_mechanism_tested": "one-time-scheduled-chatgpt-run"
+    "wake_probe": "scheduled-chatgpt-read-github-and-comment-on-pr"
   },
   "safety": {
     "auto_merge": false,
@@ -42,14 +42,12 @@
     "native GitHub-event wake-up"
   ],
   "gate_005": {
-    "phase": "005a",
-    "implementation_result": "PASS",
-    "wake_result": "FAIL",
-    "scheduled_task_id": "6a933e781b748191a315bd3aa2fa7d1a",
-    "notification_push_enabled": false,
-    "notification_email_enabled": false,
-    "native_event_trigger_available": false,
-    "native_event_trigger_blocker": "Work event-trigger mode is not exposed in the current account UI"
+    "phase": "005a-retry",
+    "probe_file": "agent-lab/wake-probe.json",
+    "probe_nonce": "WAKE-005A-R2-20260829",
+    "success_evidence": "a GitHub PR #1 comment written by the scheduled ChatGPT run containing the exact nonce",
+    "notification_delivery": "tested separately from execution",
+    "native_event_trigger_available": false
   },
-  "next_experiment": "gate-005a-retry-notification-and-background-execution"
+  "next_experiment": "evaluate-gate-005a-retry"
 }
