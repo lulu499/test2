@@ -1,9 +1,9 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-005a-retry-partial-pass",
+  "status": "gate-005a3-awaiting-work-binding",
   "last_passed_task": "gate-005a-implementation",
-  "active_task": null,
-  "human_required": false,
+  "active_task": "gate-005a3",
+  "human_required": true,
   "human_decision": {
     "selected": "A",
     "contract": "status() -> str with ready/degraded/maintenance",
@@ -14,13 +14,15 @@
     "orchestrator_to_agent": "github-pr-comment-@cursor",
     "agent_to_orchestrator": "github-pr-comment-and-commit",
     "verification": "github-actions",
-    "wake_probe": "scheduled-chatgpt-read-github-and-comment-on-pr"
+    "persistent_surface_under_test": "ChatGPT Work event-triggered task"
   },
   "safety": {
     "auto_merge": false,
     "production_actions": false,
     "scope_enforcement": true,
-    "protected_tests_mutable_by_agent": false
+    "protected_tests_mutable_by_agent": false,
+    "gate_005a3_code_changes": false,
+    "gate_005a3_cursor_dispatch": false
   },
   "verified_capabilities": [
     "direct agent dispatch",
@@ -41,17 +43,17 @@
   "unverified_or_failed_capabilities": [
     "resume the exact existing ChatGPT conversation from a scheduled task",
     "scheduled task GitHub connector action",
-    "native GitHub-event wake-up"
+    "native GitHub-event wake-up",
+    "event-triggered task returns to exact originating Work conversation"
   ],
   "gate_005": {
-    "phase": "005a-retry",
-    "scheduled_task_id": "6a93451e651c8191a9ed5a9ca87f9d21",
-    "background_execution": "PASS",
-    "same_thread_resume": "FAIL",
-    "github_heartbeat_comment": "NOT_FOUND",
-    "scheduled_task_github_action": "FAIL_OR_UNPROVEN",
-    "separate_task_chat_created": true,
-    "native_event_trigger_available": false
+    "phase": "005a3",
+    "purpose": "determine whether ChatGPT Work is a persistent orchestration home under GitHub event-triggered execution",
+    "probe_nonce": "WORK-PERSIST-005A3-20260829",
+    "work_prompt_file": "agent-lab/gate-005a3-work-prompt.md",
+    "trigger_comment": "GATE005A3_TRIGGER WORK-PERSIST-005A3-20260829",
+    "expected_work_result": "GATE005A3_WORK_RETURN WORK-PERSIST-005A3-20260829",
+    "human_step": "create the GitHub event-triggered task from one identifiable Work conversation, then report armed"
   },
-  "next_experiment": "determine-viable-persistent-orchestration-surface-before-gate-005b"
+  "next_experiment": "fire-gate-005a3-github-trigger-after-work-task-is-armed"
 }
