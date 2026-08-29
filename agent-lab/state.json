@@ -1,8 +1,8 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-004-passed-autonomous-continuation",
+  "status": "gate-005a-waiting-for-external-wake",
   "last_passed_task": "gate-004b",
-  "active_task": null,
+  "active_task": "gate-005a",
   "human_required": false,
   "human_decision": {
     "selected": "A",
@@ -13,7 +13,8 @@
   "transport": {
     "orchestrator_to_agent": "github-pr-comment-@cursor",
     "agent_to_orchestrator": "github-pr-comment-and-commit",
-    "verification": "github-actions"
+    "verification": "github-actions",
+    "wake_mechanism_under_test": "scheduled-chatgpt-run"
   },
   "safety": {
     "auto_merge": false,
@@ -35,6 +36,12 @@
     "automatic next-task generation after pass",
     "multi-task autonomous continuation without human prompt"
   ],
-  "remaining_boundary": "event-driven wake-up when ChatGPT is not actively running",
-  "next_experiment": "gate-005-event-driven-wakeup"
+  "gate_005": {
+    "phase": "005a",
+    "purpose": "prove ChatGPT can re-enter after the live chat goes idle and continue from persisted GitHub state",
+    "native_event_trigger_available": false,
+    "native_event_trigger_blocker": "Work event-trigger mode is not exposed in the current account UI",
+    "wake_strategy": "one-time scheduled ChatGPT run"
+  },
+  "next_experiment": "gate-005b-native-github-event-wakeup-when-available"
 }
