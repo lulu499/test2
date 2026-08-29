@@ -1,8 +1,8 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-005a-retry-wake-probe-armed",
+  "status": "gate-005a-retry-partial-pass",
   "last_passed_task": "gate-005a-implementation",
-  "active_task": "gate-005a-retry-wake-probe",
+  "active_task": null,
   "human_required": false,
   "human_decision": {
     "selected": "A",
@@ -35,19 +35,23 @@
     "post-decision engineering auto-correction",
     "automatic next-task generation after pass",
     "multi-task autonomous continuation without human prompt",
-    "gate-005a implementation itself"
+    "gate-005a implementation itself",
+    "scheduled ChatGPT background execution can occur independently"
   ],
-  "unverified_capabilities": [
-    "scheduled external wake-and-resume",
+  "unverified_or_failed_capabilities": [
+    "resume the exact existing ChatGPT conversation from a scheduled task",
+    "scheduled task GitHub connector action",
     "native GitHub-event wake-up"
   ],
   "gate_005": {
     "phase": "005a-retry",
-    "probe_file": "agent-lab/wake-probe.json",
-    "probe_nonce": "WAKE-005A-R2-20260829",
-    "success_evidence": "a GitHub PR #1 comment written by the scheduled ChatGPT run containing the exact nonce",
-    "notification_delivery": "tested separately from execution",
+    "scheduled_task_id": "6a93451e651c8191a9ed5a9ca87f9d21",
+    "background_execution": "PASS",
+    "same_thread_resume": "FAIL",
+    "github_heartbeat_comment": "NOT_FOUND",
+    "scheduled_task_github_action": "FAIL_OR_UNPROVEN",
+    "separate_task_chat_created": true,
     "native_event_trigger_available": false
   },
-  "next_experiment": "evaluate-gate-005a-retry"
+  "next_experiment": "determine-viable-persistent-orchestration-surface-before-gate-005b"
 }
