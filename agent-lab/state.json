@@ -1,13 +1,13 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-007-active-await-agent",
-  "last_passed_task": "gate-006",
-  "active_task": "gate-007",
+  "status": "gate-007-passed-durable-state-machine-protocol",
+  "last_passed_task": "gate-007",
+  "active_task": null,
   "active_attempt": 1,
   "human_required": false,
-  "last_processed_commit": null,
+  "last_processed_commit": "57474eb3390f8b19ae5145b975ac05a7e23c03e6",
   "last_processed_event": null,
-  "pending_action": "await-agent",
+  "pending_action": null,
   "retry_count": 0,
   "max_auto_retries": 2,
   "human_decision": {
@@ -30,10 +30,11 @@
     "protected_tests_mutable_by_agent": false
   },
   "gate_007": {
-    "task_spec": "agent-lab/tasks/gate-007.json",
-    "allowed_paths": ["agent-lab/orchestration_state.py"],
-    "protected_test": "agent-lab/tests/test_gate_007.py",
-    "attempt_key": "gate-007:attempt-1"
+    "result": "PASS_DURABLE_STATE_MACHINE_PROTOCOL",
+    "implementation_commit": "57474eb3390f8b19ae5145b975ac05a7e23c03e6",
+    "ci_run_id": 33281257682,
+    "module": "agent-lab/orchestration_state.py",
+    "review": "agent-lab/runs/gate-007.review.json"
   },
-  "next_experiment": "gate-007-durable-state-machine-protocol"
+  "next_experiment": "gate-008-work-monitor-state-machine-integration"
 }
