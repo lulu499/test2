@@ -1,8 +1,8 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-004a-active",
-  "last_passed_task": "gate-003",
-  "active_task": "gate-004a",
+  "status": "gate-004b-active-autonomous-continuation",
+  "last_passed_task": "gate-004a",
+  "active_task": "gate-004b",
   "human_required": false,
   "human_decision": {
     "selected": "A",
@@ -31,7 +31,8 @@
     "product ambiguity detection",
     "human escalation without implementation",
     "resume after human decision",
-    "post-decision engineering auto-correction"
+    "post-decision engineering auto-correction",
+    "automatic next-task generation after pass"
   ],
-  "next_experiment": "gate-004-autonomous-continuation"
+  "next_experiment": "gate-004-complete-after-gate-004b"
 }
