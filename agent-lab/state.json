@@ -1,16 +1,15 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-003-human-required",
+  "status": "gate-003-resuming-after-human-decision",
   "last_passed_task": "gate-002",
   "active_task": "gate-003",
-  "human_required": true,
+  "human_required": false,
   "human_decision": {
     "question": "Choose the public readiness API contract.",
-    "options": {
-      "A": "status() -> str with ready/degraded/maintenance",
-      "B": "is_ready() -> bool"
-    },
-    "recommended": "A"
+    "selected": "A",
+    "contract": "status() -> str with ready/degraded/maintenance",
+    "build_info_status": "keep existing string field unchanged",
+    "decided_by": "product_owner"
   },
   "transport": {
     "orchestrator_to_agent": "github-pr-comment-@cursor",
