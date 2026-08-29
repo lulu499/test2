@@ -1,0 +1,46 @@
+{
+  "task_id": "gate-007",
+  "title": "Implement the durable orchestration state-machine protocol",
+  "inherits": "agent-lab/GATE006_PRODUCTION_ARCHITECTURE.md",
+  "objective": "Create a pure deterministic Python module that encodes the durable orchestration state invariants required for idempotent Work/GitHub/Cursor execution.",
+  "allowed_paths": [
+    "agent-lab/orchestration_state.py"
+  ],
+  "protected_paths": [
+    "agent-lab/tests/test_gate_007.py",
+    "agent-lab/state.json",
+    "agent-lab/GATE006_PRODUCTION_ARCHITECTURE.md",
+    ".github/workflows/agent-lab.yml"
+  ],
+  "acceptance_criteria": [
+    "Export PENDING_ACTIONS containing exactly: await-agent, await-ci, review, correct, next-task, human, and None.",
+    "Export new_task_state(task_id, *, max_auto_retries=2) returning a fresh dict with active_task, active_attempt=1, last_passed_task=None, human_required=False, last_processed_commit=None, last_processed_event=None, pending_action='await-agent', retry_count=0, and max_auto_retries.",
+    "new_task_state rejects an empty/whitespace task_id and a negative max_auto_retries with ValueError.",
+    "Export attempt_key(task_id, attempt) returning the stable string '<task_id>:attempt-<n>' and rejecting empty task ids or attempt < 1.",
+    "Export validate_state(state) that raises ValueError for missing required fields, invalid pending_action, active_attempt < 1, retry_count < 0, max_auto_retries < 0, retry_count > max_auto_retries, or human_required=True while pending_action is not 'human'. It returns True for a valid state.",
+    "Export should_process_commit(state, commit_sha) that returns False for empty commit SHA, no active task, or a SHA equal to last_processed_commit, and True for a different non-empty SHA on an active task.",
+    "Export record_processed_commit(state, commit_sha, *, pending_action='await-ci') that returns a fresh state dict without mutating the input, records the SHA and pending action, validates the result, and is idempotent: replaying the same SHA does not change the logical state.",
+    "Export begin_auto_correction(state) that returns a fresh dict. While retry_count < max_auto_retries it increments retry_count and active_attempt by one, clears last_processed_commit and last_processed_event, sets pending_action='await-agent', and leaves human_required=False. Once the retry limit is exhausted it does not increment again and instead sets pending_action='human' and human_required=True.",
+    "Export complete_task(state) that returns a fresh dict without mutating the input, moves active_task to last_passed_task, clears active_task, sets pending_action=None, sets human_required=False, and preserves last_processed_commit as audit identity.",
+    "All transition helpers validate their outputs and preserve unrelated keys in the state dict.",
+    "No existing application behavior is changed and all repository tests pass."
+  ],
+  "verification": {
+    "command": "python3 -m unittest discover -s agent-lab/tests -v",
+    "required": true
+  },
+  "human_escalation_conditions": [
+    "The acceptance contract cannot be implemented without changing an existing public application API.",
+    "A requirement is materially ambiguous rather than mechanically implementable.",
+    "Any file outside allowed_paths appears necessary."
+  ],
+  "expected_result_envelope": {
+    "task_id": "gate-007",
+    "status": "implemented|blocked|needs-human",
+    "summary": "...",
+    "files_changed": ["..."],
+    "commands_run": ["..."],
+    "tests_run": ["..."],
+    "known_issues": ["..."]
+  }
+}
