@@ -1,0 +1,18 @@
+{
+  "experiment": "chatgpt-cursor-orchestration",
+  "status": "gate-001-passed",
+  "last_passed_task": "gate-001",
+  "active_task": null,
+  "human_required": false,
+  "transport": {
+    "orchestrator_to_agent": "github-pr-comment-@cursor",
+    "agent_to_orchestrator": "github-pr-comment-and-commit",
+    "verification": "github-actions"
+  },
+  "safety": {
+    "auto_merge": false,
+    "production_actions": false,
+    "scope_enforcement": true
+  },
+  "next_experiment": "gate-002-correction-loop"
+}
