@@ -1,8 +1,8 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-005a-waiting-for-external-wake",
-  "last_passed_task": "gate-004b",
-  "active_task": "gate-005a",
+  "status": "gate-005a-implementation-passed-wake-failed",
+  "last_passed_task": "gate-005a-implementation",
+  "active_task": null,
   "human_required": false,
   "human_decision": {
     "selected": "A",
@@ -14,7 +14,7 @@
     "orchestrator_to_agent": "github-pr-comment-@cursor",
     "agent_to_orchestrator": "github-pr-comment-and-commit",
     "verification": "github-actions",
-    "wake_mechanism_under_test": "scheduled-chatgpt-run"
+    "wake_mechanism_tested": "one-time-scheduled-chatgpt-run"
   },
   "safety": {
     "auto_merge": false,
@@ -34,14 +34,22 @@
     "resume after human decision",
     "post-decision engineering auto-correction",
     "automatic next-task generation after pass",
-    "multi-task autonomous continuation without human prompt"
+    "multi-task autonomous continuation without human prompt",
+    "gate-005a implementation itself"
+  ],
+  "unverified_capabilities": [
+    "scheduled external wake-and-resume",
+    "native GitHub-event wake-up"
   ],
   "gate_005": {
     "phase": "005a",
-    "purpose": "prove ChatGPT can re-enter after the live chat goes idle and continue from persisted GitHub state",
+    "implementation_result": "PASS",
+    "wake_result": "FAIL",
+    "scheduled_task_id": "6a933e781b748191a315bd3aa2fa7d1a",
+    "notification_push_enabled": false,
+    "notification_email_enabled": false,
     "native_event_trigger_available": false,
-    "native_event_trigger_blocker": "Work event-trigger mode is not exposed in the current account UI",
-    "wake_strategy": "one-time scheduled ChatGPT run"
+    "native_event_trigger_blocker": "Work event-trigger mode is not exposed in the current account UI"
   },
-  "next_experiment": "gate-005b-native-github-event-wakeup-when-available"
+  "next_experiment": "gate-005a-retry-notification-and-background-execution"
 }
