@@ -1,0 +1,31 @@
+{
+  "gate": "gate-006",
+  "result": "PASS_PRODUCTION_ARCHITECTURE_DEFINED",
+  "human_intervention_required": false,
+  "basis": [
+    "Gates 001-004 verified supervised dispatch, review, automatic correction, human escalation, and autonomous continuation",
+    "Gate 005A.3 verified ChatGPT Work on web as a persistent conversation surface with unattended hourly GitHub condition-watch polling",
+    "Immediate GitHub webhook wake-up remains unproven and is not assumed"
+  ],
+  "architecture": {
+    "brain": "ChatGPT Work on web",
+    "durable_state_and_event_bus": "GitHub",
+    "implementation_worker": "Cursor Cloud Agent",
+    "independent_verifier": "GitHub Actions",
+    "dormant_wake": "hourly Work condition-watch polling",
+    "future_upgrade": "native GitHub webhook/event trigger when available"
+  },
+  "required_properties": [
+    "durable GitHub state",
+    "bounded task contracts",
+    "protected validation",
+    "commit-SHA idempotency",
+    "duplicate-dispatch prevention",
+    "independent CI verification",
+    "maximum two automatic mechanical corrections by default",
+    "human escalation for product, architecture, destructive, credential, billing, production, scope, or repeated-failure boundaries",
+    "no automatic merge or deployment by default"
+  ],
+  "blueprint": "agent-lab/GATE006_PRODUCTION_ARCHITECTURE.md",
+  "next_gate": "gate-007-durable-state-machine-protocol"
+}
