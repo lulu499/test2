@@ -1,5 +1,6 @@
 APP_VERSION = "0.1.0"
 READINESS_STATES = ("ready", "degraded", "maintenance")
+_CURRENT_READINESS = "ready"
 
 
 def greeting(name: str) -> str:
@@ -22,4 +23,4 @@ def build_info() -> dict:
 
 def status() -> str:
     """Return the public readiness status from the approved contract."""
-    return READINESS_STATES[0]
+    return _CURRENT_READINESS
