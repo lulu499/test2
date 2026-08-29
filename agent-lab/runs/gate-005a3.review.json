@@ -1,0 +1,17 @@
+{
+  "gate": "gate-005a3",
+  "result": "PASS_PERSISTENT_WORK_SURFACE_WITH_UNATTENDED_HOURLY_POLL",
+  "human_intervention_required": false,
+  "surface": "ChatGPT Work on web",
+  "task_mode": "condition_watch",
+  "schedule": "hourly polling",
+  "probe_nonce": "WORK-PERSIST-005A3-20260829",
+  "verified": [
+    "Work on web can host GitHub condition-watch monitoring",
+    "a manual monitor execution returned into the originating Work conversation",
+    "a later unattended hourly poll detected a fresh GitHub trigger without Run now",
+    "the unattended result returned into the same originating Work conversation"
+  ],
+  "remaining_boundary": "Immediate GitHub webhook wake-up remains unproven; current verified wake mechanism is hourly polling.",
+  "architecture_consequence": "Use Work as the persistent brain, GitHub as durable state/event transport, Cursor as execution worker, and GitHub Actions as independent verifier. Treat dormant orchestration latency as up to one polling interval."
+}
