@@ -17,3 +17,8 @@ def version() -> str:
 def build_info() -> dict:
     """Return a fresh copy of application build metadata."""
     return {"version": APP_VERSION, "status": "ready"}
+
+
+def status() -> str:
+    """Return the public readiness status: ready, degraded, or maintenance."""
+    return "ready"}
