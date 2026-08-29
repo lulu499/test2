@@ -1,14 +1,13 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-003-resuming-after-human-decision",
-  "last_passed_task": "gate-002",
-  "active_task": "gate-003",
+  "status": "gate-003-passed",
+  "last_passed_task": "gate-003",
+  "active_task": null,
   "human_required": false,
   "human_decision": {
-    "question": "Choose the public readiness API contract.",
     "selected": "A",
     "contract": "status() -> str with ready/degraded/maintenance",
-    "build_info_status": "keep existing string field unchanged",
+    "build_info_status": "unchanged string field",
     "decided_by": "product_owner"
   },
   "transport": {
@@ -30,7 +29,9 @@
     "automatic correction dispatch",
     "successful correction without human intervention",
     "product ambiguity detection",
-    "human escalation without implementation"
+    "human escalation without implementation",
+    "resume after human decision",
+    "post-decision engineering auto-correction"
   ],
-  "next_experiment": "gate-003-resume-after-human-decision"
+  "next_experiment": "gate-004-autonomous-continuation"
 }
