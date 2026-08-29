@@ -1,8 +1,8 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-005a3-same-work-thread-passed-auto-poll-pending",
-  "last_passed_task": "gate-005a-implementation",
-  "active_task": "gate-005a3-auto-poll",
+  "status": "gate-005a3-passed-persistent-work-surface",
+  "last_passed_task": "gate-005a3",
+  "active_task": null,
   "human_required": false,
   "human_decision": {
     "selected": "A",
@@ -14,15 +14,14 @@
     "orchestrator_to_agent": "github-pr-comment-@cursor",
     "agent_to_orchestrator": "github-pr-comment-and-commit",
     "verification": "github-actions",
-    "persistent_surface_under_test": "ChatGPT Work condition-watch on web"
+    "persistent_surface": "ChatGPT Work on web",
+    "dormant_wake": "hourly condition-watch polling"
   },
   "safety": {
     "auto_merge": false,
     "production_actions": false,
     "scope_enforcement": true,
-    "protected_tests_mutable_by_agent": false,
-    "gate_005a3_code_changes": false,
-    "gate_005a3_cursor_dispatch": false
+    "protected_tests_mutable_by_agent": false
   },
   "verified_capabilities": [
     "direct agent dispatch",
@@ -37,31 +36,21 @@
     "post-decision engineering auto-correction",
     "automatic next-task generation after pass",
     "multi-task autonomous continuation without human prompt",
-    "gate-005a implementation itself",
     "scheduled ChatGPT background execution can occur independently",
-    "web Work can create and enable GitHub comment-trigger monitoring",
-    "Work monitor execution can return into the exact originating Work conversation"
+    "web Work can host GitHub condition-watch monitoring",
+    "Work monitor execution can return into the exact originating Work conversation",
+    "unattended hourly Work polling can detect a fresh GitHub trigger and return in the same Work conversation"
   ],
-  "unverified_or_failed_capabilities": [
-    "immediate GitHub webhook wake-up",
-    "automatic unattended Work polling detects and handles a fresh GitHub event without Run now"
+  "pending_capabilities": [
+    "immediate GitHub webhook wake-up"
   ],
   "gate_005": {
-    "phase": "005a3",
-    "purpose": "determine whether ChatGPT Work is a persistent orchestration home under GitHub-triggered monitoring",
+    "result": "PASS_PERSISTENT_WORK_SURFACE_WITH_UNATTENDED_HOURLY_POLL",
+    "surface": "ChatGPT Work on web",
     "probe_nonce": "WORK-PERSIST-005A3-20260829",
-    "work_task_id": "6a9359057af881919c96003f6ba1fefe",
-    "timing_mode": "condition_watch",
-    "schedule": "hourly polling",
-    "notifications_enabled": true,
-    "email_enabled": true,
-    "manual_run_result": {
-      "result": "PASS_SAME_WORK_THREAD",
-      "observed_return": "GATE005A3_WORK_RETURN WORK-PERSIST-005A3-20260829",
-      "same_originating_work_chat": true
-    },
-    "automatic_poll_result": "PENDING",
-    "important_architecture_finding": "Current Work monitoring is implemented as hourly condition polling, not an immediate GitHub webhook trigger."
+    "wake_mechanism": "hourly condition-watch polling",
+    "same_work_conversation": true,
+    "immediate_webhook": "UNPROVEN"
   },
-  "next_experiment": "post-a-fresh-trigger-after-the-manual-run-and-let-the-next-hourly-condition-watch-run-without-user-intervention"
+  "next_experiment": "gate-006-production-architecture-blueprint"
 }
