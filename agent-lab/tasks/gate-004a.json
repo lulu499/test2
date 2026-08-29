@@ -1,0 +1,19 @@
+{
+  "task_id": "gate-004a",
+  "parent_gate": "gate-004",
+  "title": "Centralize the decided readiness-state contract",
+  "objective": "Represent the product-owner-approved readiness values as one immutable source of truth without changing behavior.",
+  "allowed_paths": ["agent-lab/app.py"],
+  "protected_paths": ["agent-lab/tests/test_gate_004a.py", ".github/workflows/agent-lab.yml"],
+  "acceptance_criteria": [
+    "app.py exports READINESS_STATES as the exact tuple (\"ready\", \"degraded\", \"maintenance\").",
+    "READINESS_STATES is immutable (tuple).",
+    "status() still returns \"ready\".",
+    "status() returns a value contained in READINESS_STATES.",
+    "greeting(), version(), build_info(), APP_VERSION, and the Gate 003 public contract remain unchanged.",
+    "All repository CI tests pass."
+  ],
+  "verification": {"command": "python3 -m unittest discover -s agent-lab/tests -v", "required": true},
+  "human_escalation": false,
+  "on_pass": "orchestrator_must_generate_and_dispatch_gate-004b_without_human_prompt"
+}
