@@ -21,4 +21,4 @@ def build_info() -> dict:
 
 def status() -> str:
     """Return the public readiness status: ready, degraded, or maintenance."""
-    return "ready"}
+    return "ready"
