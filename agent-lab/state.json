@@ -1,9 +1,15 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-006-passed-production-architecture-defined",
+  "status": "gate-007-active-await-agent",
   "last_passed_task": "gate-006",
-  "active_task": null,
+  "active_task": "gate-007",
+  "active_attempt": 1,
   "human_required": false,
+  "last_processed_commit": null,
+  "last_processed_event": null,
+  "pending_action": "await-agent",
+  "retry_count": 0,
+  "max_auto_retries": 2,
   "human_decision": {
     "selected": "A",
     "contract": "status() -> str with ready/degraded/maintenance",
@@ -23,42 +29,11 @@
     "scope_enforcement": true,
     "protected_tests_mutable_by_agent": false
   },
-  "verified_capabilities": [
-    "direct agent dispatch",
-    "independent diff review",
-    "independent CI verification",
-    "automatic failure diagnosis",
-    "automatic correction dispatch",
-    "successful correction without human intervention",
-    "product ambiguity detection",
-    "human escalation without implementation",
-    "resume after human decision",
-    "post-decision engineering auto-correction",
-    "automatic next-task generation after pass",
-    "multi-task autonomous continuation without human prompt",
-    "scheduled ChatGPT background execution can occur independently",
-    "web Work can host GitHub condition-watch monitoring",
-    "Work monitor execution can return into the exact originating Work conversation",
-    "unattended hourly Work polling can detect a fresh GitHub trigger and return in the same Work conversation",
-    "production architecture defined from proven capabilities"
-  ],
-  "pending_capabilities": [
-    "immediate GitHub webhook wake-up"
-  ],
-  "gate_005": {
-    "result": "PASS_PERSISTENT_WORK_SURFACE_WITH_UNATTENDED_HOURLY_POLL",
-    "surface": "ChatGPT Work on web",
-    "wake_mechanism": "hourly condition-watch polling",
-    "same_work_conversation": true,
-    "immediate_webhook": "UNPROVEN"
-  },
-  "gate_006": {
-    "result": "PASS_PRODUCTION_ARCHITECTURE_DEFINED",
-    "blueprint": "agent-lab/GATE006_PRODUCTION_ARCHITECTURE.md",
-    "brain": "ChatGPT Work on web",
-    "durable_state_and_event_bus": "GitHub",
-    "implementation_worker": "Cursor Cloud Agent",
-    "independent_verifier": "GitHub Actions"
+  "gate_007": {
+    "task_spec": "agent-lab/tasks/gate-007.json",
+    "allowed_paths": ["agent-lab/orchestration_state.py"],
+    "protected_test": "agent-lab/tests/test_gate_007.py",
+    "attempt_key": "gate-007:attempt-1"
   },
   "next_experiment": "gate-007-durable-state-machine-protocol"
 }
