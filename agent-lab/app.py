@@ -1,7 +1,5 @@
 APP_VERSION = "0.1.0"
 
-BUILD_INFO = {"version": APP_VERSION, "status": "ready"}
-
 
 def greeting(name: str) -> str:
     """Return a deterministic greeting used by the orchestration lab."""
@@ -17,5 +15,5 @@ def version() -> str:
 
 
 def build_info() -> dict:
-    """Return application build metadata."""
-    return BUILD_INFO
+    """Return a fresh copy of application build metadata."""
+    return {"version": APP_VERSION, "status": "ready"}
