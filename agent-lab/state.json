@@ -1,8 +1,8 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-008a-active-await-agent",
-  "last_passed_task": "gate-007",
-  "active_task": "gate-008a",
+  "status": "gate-008b-active-await-agent",
+  "last_passed_task": "gate-008a",
+  "active_task": "gate-008b",
   "active_attempt": 1,
   "human_required": false,
   "last_processed_commit": null,
@@ -33,15 +33,18 @@
     "result": "PASS_DURABLE_STATE_MACHINE_PROTOCOL",
     "implementation_commit": "57474eb3390f8b19ae5145b975ac05a7e23c03e6",
     "ci_run_id": 33281257682,
-    "module": "agent-lab/orchestration_state.py",
-    "review": "agent-lab/runs/gate-007.review.json"
+    "module": "agent-lab/orchestration_state.py"
   },
   "gate_008": {
-    "phase": "008a",
-    "task_spec": "agent-lab/tasks/gate-008a.json",
-    "protected_test": "agent-lab/tests/test_gate_008a.py",
-    "attempt_key": "gate-008a:attempt-1",
-    "goal": "prove deterministic monitor transitions before wiring the live Work condition-watch"
+    "phase": "008b-live-work-monitor-integration",
+    "planner_result": "PASS_WORK_MONITOR_TRANSITION_PLANNER",
+    "planner_commit": "09a279539a16de9261f20f9773ab5f9d3c23fcdb",
+    "planner_ci_run_id": 33296153019,
+    "task_spec": "agent-lab/tasks/gate-008b.json",
+    "protected_test": "agent-lab/tests/test_gate_008b.py",
+    "attempt_key": "gate-008b:attempt-1",
+    "work_monitor_task_id": "6a9359057af881919c96003f6ba1fefe",
+    "goal": "prove the persistent Work monitor can process a real Cursor commit through the persisted await-agent -> await-ci -> review -> pass protocol"
   },
-  "next_experiment": "gate-008-work-monitor-state-machine-integration"
+  "next_experiment": "gate-008b-live-work-monitor-integration"
 }
