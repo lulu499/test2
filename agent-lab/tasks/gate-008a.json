@@ -1,0 +1,38 @@
+{
+  "task_id": "gate-008a",
+  "parent_gate": "gate-008",
+  "title": "Implement deterministic Work-monitor transition planning",
+  "inherits": [
+    "agent-lab/GATE006_PRODUCTION_ARCHITECTURE.md",
+    "agent-lab/orchestration_state.py"
+  ],
+  "objective": "Create a pure deterministic integration layer that maps persisted orchestration state plus an observed Cursor commit/CI/review outcome into exactly one idempotent monitor decision and next state. It performs no external I/O.",
+  "allowed_paths": ["agent-lab/work_monitor_protocol.py"],
+  "protected_paths": [
+    "agent-lab/orchestration_state.py",
+    "agent-lab/tests/test_gate_008a.py",
+    "agent-lab/state.json",
+    ".github/workflows/agent-lab.yml"
+  ],
+  "acceptance_criteria": [
+    "Export CI_STATUSES containing exactly None, queued, in_progress, success, failure, cancelled.",
+    "Export REVIEW_OUTCOMES containing exactly None, pass, mechanical-failure, human-required.",
+    "Export process_monitor_observation(state, *, candidate_commit=None, ci_status=None, review_outcome=None) returning a dict with decision and state, and optionally attempt_key when a correction is dispatched.",
+    "The function validates the input with orchestration_state.validate_state and never mutates the input.",
+    "If human_required is true or pending_action is human, return decision human-required with unchanged logical state.",
+    "If there is no active task, return decision noop with unchanged logical state.",
+    "When pending_action is await-agent, no/empty/duplicate candidate commit returns noop; a new candidate commit is recorded through record_processed_commit with pending_action await-ci and decision commit-recorded.",
+    "When pending_action is await-ci, a missing last_processed_commit is rejected as inconsistent state; None/queued/in_progress CI returns decision ci-pending without state mutation; success/failure/cancelled advances pending_action to review and returns decision ready-for-review.",
+    "When pending_action is review, no review_outcome returns noop; pass completes the task and returns task-passed; human-required sets pending_action human and human_required true; mechanical-failure calls begin_auto_correction and returns dispatch-correction with the new stable attempt_key, unless retries are exhausted in which case it returns human-required.",
+    "Unsupported ci_status or review_outcome raises ValueError.",
+    "Repeated processing after a persisted transition is idempotent and must not emit the same downstream action twice from the same logical state.",
+    "All transitions preserve unrelated keys in state.",
+    "All repository tests pass."
+  ],
+  "verification": {"command":"python3 -m unittest discover -s agent-lab/tests -v","required":true},
+  "human_escalation_conditions": [
+    "The contract requires changing Gate 07 semantics.",
+    "External I/O appears necessary inside the pure planner.",
+    "Any file outside allowed_paths appears necessary."
+  ]
+}
