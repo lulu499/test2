@@ -1,13 +1,13 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-007-passed-durable-state-machine-protocol",
+  "status": "gate-008a-active-await-agent",
   "last_passed_task": "gate-007",
-  "active_task": null,
+  "active_task": "gate-008a",
   "active_attempt": 1,
   "human_required": false,
-  "last_processed_commit": "57474eb3390f8b19ae5145b975ac05a7e23c03e6",
+  "last_processed_commit": null,
   "last_processed_event": null,
-  "pending_action": null,
+  "pending_action": "await-agent",
   "retry_count": 0,
   "max_auto_retries": 2,
   "human_decision": {
@@ -35,6 +35,13 @@
     "ci_run_id": 33281257682,
     "module": "agent-lab/orchestration_state.py",
     "review": "agent-lab/runs/gate-007.review.json"
+  },
+  "gate_008": {
+    "phase": "008a",
+    "task_spec": "agent-lab/tasks/gate-008a.json",
+    "protected_test": "agent-lab/tests/test_gate_008a.py",
+    "attempt_key": "gate-008a:attempt-1",
+    "goal": "prove deterministic monitor transitions before wiring the live Work condition-watch"
   },
   "next_experiment": "gate-008-work-monitor-state-machine-integration"
 }
