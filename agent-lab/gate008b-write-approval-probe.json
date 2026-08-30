@@ -1,6 +1,6 @@
 {
   "probe": "gate-008b-r2-background-write",
   "nonce": "GATE008B-R2-WRITE-20260830",
-  "status": "armed",
-  "written_by_background_work": false
+  "status": "background-write-pass",
+  "written_by_background_work": true
 }
