@@ -1,0 +1,26 @@
+{
+  "task_id": "gate-008b",
+  "parent_gate": "gate-008",
+  "title": "Live Work-monitor state-machine integration probe",
+  "objective": "Create one deterministic fixture value so the dormant Work monitor can process a real Cursor commit through await-agent -> await-ci -> review -> pass using the persisted Gate 07/08 protocol.",
+  "allowed_paths": ["agent-lab/gate008b_fixture.py"],
+  "protected_paths": [
+    "agent-lab/tests/test_gate_008b.py",
+    "agent-lab/state.json",
+    "agent-lab/orchestration_state.py",
+    "agent-lab/work_monitor_protocol.py",
+    ".github/workflows/agent-lab.yml"
+  ],
+  "acceptance_criteria": [
+    "Create agent-lab/gate008b_fixture.py.",
+    "Export MONITOR_PROTOCOL_PROBE with exact value 'GATE008B_STATE_MACHINE_INTEGRATION'.",
+    "Export probe_value() returning MONITOR_PROTOCOL_PROBE.",
+    "No other file is modified by Cursor.",
+    "All repository tests pass."
+  ],
+  "verification": {"command":"python3 -m unittest discover -s agent-lab/tests -v","required":true},
+  "human_escalation_conditions": [
+    "Any file outside allowed_paths appears necessary.",
+    "The exact fixture contract is ambiguous."
+  ]
+}
