@@ -1,11 +1,11 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-010a-blocked-event-trigger-tool-exposure",
+  "status": "gate-010b-fast-path-pivot-active",
   "last_passed_task": "gate-009b-r2-wake",
-  "active_task": "gate-010a",
+  "active_task": "gate-010b",
   "active_attempt": 1,
-  "human_required": true,
-  "pending_action": "diagnose-event-trigger-tool-exposure-in-fresh-work-session",
+  "human_required": false,
+  "pending_action": "implement-fast-path-event-envelope",
   "human_decision": {
     "selected": "A",
     "contract": "status() -> str with ready/degraded/maintenance",
@@ -18,37 +18,29 @@
     "verification": "github-actions",
     "persistent_surface": "ChatGPT Work on web",
     "dormant_wake_legacy": "hourly condition-watch polling",
-    "target_fast_path": "native GitHub pull-request event webhook",
-    "recovery_path": "low-frequency reconciliation monitor"
+    "target_fast_path": "external immediate event relay",
+    "recovery_path": "low-frequency Work reconciliation monitor"
   },
   "safety": {
     "auto_merge": false,
     "production_actions": false,
     "scope_enforcement": true,
     "protected_tests_mutable_by_agent": false,
-    "dormant_work_direct_state_json_write": false,
-    "gate_010a_read_only_after_trigger": true
+    "no_credentials_in_gate_010b": true,
+    "no_external_network_in_gate_010b": true
   },
   "gate_009": {
     "result": "PASS_WAKE_BLOCKED_WRITE",
     "monitor_task_id": "6a9359057af881919c96003f6ba1fefe",
-    "same_monitor_reused": true,
-    "same_work_conversation_delivery": true,
-    "scheduled_background_execution": true,
-    "github_read": true,
-    "github_background_write": "blocked",
-    "conclusion": "Persistent Work wake is usable; unattended GitHub writes are not reliable enough to be the transition primitive."
+    "conclusion": "Persistent Work wake is usable as recovery; unattended GitHub writes are not reliable enough as the transition primitive."
   },
   "gate_010": {
-    "phase": "010a-native-github-event-wake",
-    "task_spec": "agent-lab/tasks/gate-010a.json",
-    "trigger_event": "new PR #1 comment with exact body GATE010A_TRIGGER EVENT-WAKE-010A-20260831",
-    "expected_work_response": "GATE010A_EVENT_WAKE_PASS EVENT-WAKE-010A-20260831",
-    "goal": "prove immediate webhook wake of persistent Work orchestration without hourly polling",
-    "status": "blocked-event-trigger-tool-exposure",
-    "observed_blocker": "Work session automation tool exposed only time-scheduled tasks and no GitHub webhook trigger",
-    "official_docs_expectation": "eligible Plus web Work can create GitHub pull-request event-triggered tasks",
-    "next_probe": "fresh Work session event-trigger capability exposure"
+    "phase": "010b-fast-path-event-contract",
+    "native_work_webhook_result": "BLOCKED_BY_TOOL_EXPOSURE",
+    "native_work_webhook_evidence": "two independent Work sessions exposed only time-scheduled automation despite current OpenAI documentation",
+    "architecture": "agent-lab/architecture/gate-010-fast-path.md",
+    "task_spec": "agent-lab/tasks/gate-010b.json",
+    "goal": "replace polling-dependent orchestration with a controllable immediate event relay while preserving ChatGPT-as-product-brain UX"
   },
-  "next_experiment": "gate-010a-r1-fresh-work-event-trigger-exposure-probe"
+  "next_experiment": "gate-010b-deterministic-fast-path-event-envelope"
 }
