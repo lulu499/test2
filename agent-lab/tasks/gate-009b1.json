@@ -1,0 +1,21 @@
+{
+  "task_id": "gate-009b1",
+  "parent_gate": "gate-009",
+  "title": "Successive monitor lifecycle probe A",
+  "objective": "Create the first deterministic fixture used to prove reuse of the same persistent Work monitor across successive tasks.",
+  "allowed_paths": ["agent-lab/gate009b1_fixture.py"],
+  "protected_paths": [
+    "agent-lab/tests/test_gate_009b1.py",
+    "agent-lab/transitions/gate-009b1-attempt-1.json",
+    "agent-lab/state.json",
+    ".github/workflows/agent-lab.yml"
+  ],
+  "acceptance_criteria": [
+    "Create agent-lab/gate009b1_fixture.py.",
+    "Export MONITOR_LIFECYCLE_PROBE_A with exact value 'GATE009B_SUCCESSOR_A'.",
+    "Export probe_a() returning MONITOR_LIFECYCLE_PROBE_A.",
+    "No other file is modified by Cursor.",
+    "All repository tests pass."
+  ],
+  "verification": {"command": "python3 -m unittest discover -s agent-lab/tests -v", "required": true}
+}
