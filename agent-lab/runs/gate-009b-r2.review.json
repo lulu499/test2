@@ -1,0 +1,16 @@
+{
+  "gate": "gate-009b-r2",
+  "result": "PASS_WAKE_BLOCKED_WRITE",
+  "monitor_task_id": "6a9359057af881919c96003f6ba1fefe",
+  "observations": {
+    "same_monitor_reused": true,
+    "same_work_conversation_delivery": true,
+    "scheduled_background_execution": true,
+    "github_read": true,
+    "github_background_write": "blocked",
+    "probe_file": "agent-lab/transitions/gate-009b-r2-write-probe.json",
+    "probe_remained_armed": true
+  },
+  "conclusion": "Persistent Work wake and delivery are usable, but unattended GitHub writes are not reliable enough to serve as the orchestration transition primitive.",
+  "next_gate": "gate-010a-native-github-event-wake"
+}
