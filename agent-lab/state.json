@@ -1,13 +1,13 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-008b-active-await-agent",
-  "last_passed_task": "gate-008a",
-  "active_task": "gate-008b",
+  "status": "gate-008-passed-dormant-work-monitor-with-transition-ledger",
+  "last_passed_task": "gate-008b",
+  "active_task": null,
   "active_attempt": 1,
   "human_required": false,
-  "last_processed_commit": null,
-  "last_processed_event": null,
-  "pending_action": "await-agent",
+  "last_processed_commit": "9c142ce57bc520438da4c0bc56ac4fd0dc656179",
+  "last_processed_event": "gate-008b:attempt-1:pass",
+  "pending_action": null,
   "retry_count": 0,
   "max_auto_retries": 2,
   "human_decision": {
@@ -21,13 +21,16 @@
     "agent_to_orchestrator": "github-pr-comment-and-commit",
     "verification": "github-actions",
     "persistent_surface": "ChatGPT Work on web",
-    "dormant_wake": "hourly condition-watch polling"
+    "dormant_wake": "hourly condition-watch polling",
+    "dormant_state_mutation": "per-attempt-low-risk-transition-ledger",
+    "authoritative_state_reconciliation": "active-orchestrator"
   },
   "safety": {
     "auto_merge": false,
     "production_actions": false,
     "scope_enforcement": true,
-    "protected_tests_mutable_by_agent": false
+    "protected_tests_mutable_by_agent": false,
+    "dormant_work_direct_state_json_write": false
   },
   "gate_007": {
     "result": "PASS_DURABLE_STATE_MACHINE_PROTOCOL",
@@ -36,15 +39,51 @@
     "module": "agent-lab/orchestration_state.py"
   },
   "gate_008": {
-    "phase": "008b-live-work-monitor-integration",
+    "result": "PASS_DORMANT_WORK_MONITOR_WITH_LOW_RISK_TRANSITION_LEDGER",
     "planner_result": "PASS_WORK_MONITOR_TRANSITION_PLANNER",
     "planner_commit": "09a279539a16de9261f20f9773ab5f9d3c23fcdb",
     "planner_ci_run_id": 33296153019,
-    "task_spec": "agent-lab/tasks/gate-008b.json",
-    "protected_test": "agent-lab/tests/test_gate_008b.py",
-    "attempt_key": "gate-008b:attempt-1",
-    "work_monitor_task_id": "6a9359057af881919c96003f6ba1fefe",
-    "goal": "prove the persistent Work monitor can process a real Cursor commit through the persisted await-agent -> await-ci -> review -> pass protocol"
+    "implementation_commit": "9c142ce57bc520438da4c0bc56ac4fd0dc656179",
+    "implementation_ci_run_id": 33296594447,
+    "transition_ledger": "agent-lab/transitions/gate-008b-attempt-1.json",
+    "transition_ledger_result": "pass",
+    "processed_by_background_work": true,
+    "same_work_conversation_terminal_signal": "GATE008B_R3_LEDGER_PASS",
+    "permission_model": {
+      "background_reads": "PASS",
+      "background_low_risk_writes": "PASS",
+      "background_direct_state_json_write": "BLOCKED_BY_APPROVAL_POLICY"
+    }
   },
-  "next_experiment": "gate-008b-live-work-monitor-integration"
+  "verified_capabilities": [
+    "direct agent dispatch",
+    "independent diff review",
+    "independent CI verification",
+    "automatic failure diagnosis",
+    "automatic correction dispatch",
+    "successful correction without human intervention",
+    "product ambiguity detection",
+    "human escalation without implementation",
+    "resume after human decision",
+    "post-decision engineering auto-correction",
+    "automatic next-task generation after pass",
+    "multi-task autonomous continuation without human prompt",
+    "scheduled ChatGPT background execution can occur independently",
+    "web Work can host GitHub condition-watch monitoring",
+    "Work monitor execution can return into the exact originating Work conversation",
+    "unattended hourly Work polling can detect a fresh GitHub trigger and return in the same Work conversation",
+    "production architecture defined from proven capabilities",
+    "durable orchestration state-machine protocol",
+    "idempotent Work-monitor transition planning",
+    "background low-risk GitHub write under current permissions",
+    "dormant Work independent Cursor commit review",
+    "dormant Work independent CI review",
+    "dormant Work terminal transition ledger persistence",
+    "active reconciliation of dormant transition ledger into authoritative state"
+  ],
+  "pending_capabilities": [
+    "immediate GitHub webhook wake-up",
+    "automatic monitor lifecycle re-arm across successive tasks"
+  ],
+  "next_experiment": "gate-009-monitor-lifecycle-and-ledger-reconciliation"
 }
