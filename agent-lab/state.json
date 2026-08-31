@@ -1,8 +1,8 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-009a-active-await-agent",
-  "last_passed_task": "gate-008b",
-  "active_task": "gate-009a",
+  "status": "gate-009b1-active-await-agent",
+  "last_passed_task": "gate-009a",
+  "active_task": "gate-009b1",
   "active_attempt": 1,
   "human_required": false,
   "last_processed_commit": null,
@@ -51,11 +51,19 @@
     "same_work_conversation_terminal_signal": "GATE008B_R3_LEDGER_PASS"
   },
   "gate_009": {
-    "phase": "009a",
-    "task_spec": "agent-lab/tasks/gate-009a.json",
-    "protected_test": "agent-lab/tests/test_gate_009a.py",
-    "attempt_key": "gate-009a:attempt-1",
-    "goal": "prove deterministic terminal-ledger reconciliation and one-monitor lifecycle planning before live successive-task testing"
+    "phase": "009b-successor-a",
+    "planner_result": "PASS_LEDGER_RECONCILIATION_AND_MONITOR_LIFECYCLE_PLANNER",
+    "planner_commit": "284816ce478ab167d51ecaf7a6b63d4ba7f2b4a8",
+    "planner_ci_run_id": 33377129319,
+    "monitor_task_id": "6a9359057af881919c96003f6ba1fefe",
+    "successor_a": {
+      "task_id": "gate-009b1",
+      "attempt_key": "gate-009b1:attempt-1",
+      "task_spec": "agent-lab/tasks/gate-009b1.json",
+      "protected_test": "agent-lab/tests/test_gate_009b1.py",
+      "transition_ledger": "agent-lab/transitions/gate-009b1-attempt-1.json"
+    },
+    "goal": "prove two successive real tasks can reuse the same persistent Work monitor without duplicate monitors or duplicate processing"
   },
-  "next_experiment": "gate-009-monitor-lifecycle-and-ledger-reconciliation"
+  "next_experiment": "gate-009b-two-successive-tasks-same-monitor"
 }
