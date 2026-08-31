@@ -1,0 +1,12 @@
+{
+  "task_id": "gate-008b",
+  "attempt": 1,
+  "attempt_key": "gate-008b:attempt-1",
+  "status": "armed",
+  "dispatch_comment_id": 5467111621,
+  "implementation_commit": null,
+  "ci_run_id": null,
+  "scope_result": null,
+  "review_result": null,
+  "processed_by_background_work": false
+}
