@@ -1,0 +1,18 @@
+{
+  "task_id": "gate-009a",
+  "parent_gate": "gate-009",
+  "title": "Ledger reconciliation and monitor lifecycle planning",
+  "objective": "Implement a pure deterministic module that reconciles terminal transition ledgers into orchestration state and decides whether the single Work monitor should be rearmed, paused, or left enabled.",
+  "allowed_paths": ["agent-lab/ledger_reconciliation.py"],
+  "protected_paths": ["agent-lab/tests/test_gate_009a.py", "agent-lab/orchestration_state.py", "agent-lab/state.json", ".github/workflows/agent-lab.yml"],
+  "acceptance_criteria": [
+    "Validate terminal ledgers and derive a stable ledger event id.",
+    "Reconcile pass and human-required ledgers without mutating inputs.",
+    "Suppress duplicate ledger reconciliation using last_processed_event.",
+    "On pass, optionally arm one next task while preserving predecessor audit identity.",
+    "Expose a pure monitor lifecycle decision enforcing at most one matching monitor.",
+    "Return rearm for an active non-human task when its matching monitor is disabled or missing; noop when one matching monitor is already enabled; pause when no active task; human for human-required state.",
+    "All repository tests pass."
+  ],
+  "verification": {"command": "python3 -m unittest discover -s agent-lab/tests -v", "required": true}
+}
