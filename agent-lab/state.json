@@ -1,11 +1,11 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-010a-awaiting-native-event-trigger-creation",
+  "status": "gate-010a-blocked-event-trigger-tool-exposure",
   "last_passed_task": "gate-009b-r2-wake",
   "active_task": "gate-010a",
   "active_attempt": 1,
   "human_required": true,
-  "pending_action": "create-native-github-event-trigger-in-work",
+  "pending_action": "diagnose-event-trigger-tool-exposure-in-fresh-work-session",
   "human_decision": {
     "selected": "A",
     "contract": "status() -> str with ready/degraded/maintenance",
@@ -45,7 +45,10 @@
     "trigger_event": "new PR #1 comment with exact body GATE010A_TRIGGER EVENT-WAKE-010A-20260831",
     "expected_work_response": "GATE010A_EVENT_WAKE_PASS EVENT-WAKE-010A-20260831",
     "goal": "prove immediate webhook wake of persistent Work orchestration without hourly polling",
-    "status": "awaiting-event-trigger-task-creation-in-work"
+    "status": "blocked-event-trigger-tool-exposure",
+    "observed_blocker": "Work session automation tool exposed only time-scheduled tasks and no GitHub webhook trigger",
+    "official_docs_expectation": "eligible Plus web Work can create GitHub pull-request event-triggered tasks",
+    "next_probe": "fresh Work session event-trigger capability exposure"
   },
-  "next_experiment": "fire-gate-010a-github-comment-after-event-trigger-is-armed"
+  "next_experiment": "gate-010a-r1-fresh-work-event-trigger-exposure-probe"
 }
