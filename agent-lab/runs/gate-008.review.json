@@ -1,0 +1,43 @@
+{
+  "gate": "gate-008",
+  "result": "PASS_DORMANT_WORK_MONITOR_WITH_LOW_RISK_TRANSITION_LEDGER",
+  "human_intervention_required": false,
+  "phases": {
+    "008a": {
+      "result": "PASS_WORK_MONITOR_TRANSITION_PLANNER",
+      "implementation_commit": "09a279539a16de9261f20f9773ab5f9d3c23fcdb",
+      "ci_run_id": 33296153019
+    },
+    "008b_initial": {
+      "result": "BLOCKED_BY_AUTHORITATIVE_STATE_WRITE_APPROVAL",
+      "implementation_commit": "9c142ce57bc520438da4c0bc56ac4fd0dc656179",
+      "ci_run_id": 33296594447,
+      "finding": "Background Work could read and review GitHub but direct mutation of agent-lab/state.json was rejected as too risky without explicit approval."
+    },
+    "008b_r2": {
+      "result": "PASS_BACKGROUND_LOW_RISK_GITHUB_WRITE",
+      "probe_file": "agent-lab/gate008b-write-approval-probe.json"
+    },
+    "008b_r3": {
+      "result": "PASS_LIVE_WORK_MONITOR_STATE_MACHINE_INTEGRATION",
+      "transition_ledger": "agent-lab/transitions/gate-008b-attempt-1.json",
+      "implementation_commit": "9c142ce57bc520438da4c0bc56ac4fd0dc656179",
+      "ci_run_id": 33296594447,
+      "scope_result": "pass",
+      "processed_by_background_work": true,
+      "same_work_conversation_terminal_signal": "GATE008B_R3_LEDGER_PASS"
+    }
+  },
+  "verified_capabilities": [
+    "dormant Work can wake and reconstruct an active orchestration attempt from GitHub",
+    "dormant Work can independently inspect a Cursor implementation commit",
+    "dormant Work can independently inspect GitHub Actions",
+    "dormant Work can write low-risk durable transition evidence to GitHub",
+    "dormant Work can return a terminal result into the same persistent Work conversation",
+    "active orchestrator can reconcile a dormant transition ledger into authoritative state",
+    "authoritative state.json need not be writable by dormant Work"
+  ],
+  "architecture_decision": "Use per-attempt transition ledgers for dormant background mutations. Treat state.json as an authoritative compacted projection reconciled by the active orchestrator.",
+  "remaining_boundary": "The Work monitor pauses after terminal processing and must be re-armed or lifecycle-managed for subsequent tasks. Immediate webhook wake-up also remains unproven.",
+  "next_gate": "gate-009-monitor-lifecycle-and-ledger-reconciliation"
+}

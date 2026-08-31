@@ -1,0 +1,25 @@
+{
+  "gate": "gate-008a",
+  "result": "PASS_WORK_MONITOR_TRANSITION_PLANNER",
+  "human_intervention_required": false,
+  "implementation_commit": "09a279539a16de9261f20f9773ab5f9d3c23fcdb",
+  "scope": {
+    "result": "PASS",
+    "changed_files": ["agent-lab/work_monitor_protocol.py"],
+    "protected_paths_unchanged_by_cursor": true
+  },
+  "verification": {
+    "ci_run_id": 33296153019,
+    "ci_result": "success"
+  },
+  "verified_capabilities": [
+    "idempotent Work-monitor observation planning",
+    "new commit recording to await-ci",
+    "CI pending versus terminal transitions",
+    "review pass completion",
+    "mechanical failure correction dispatch with stable attempt key",
+    "retry exhaustion to human-required",
+    "duplicate downstream-action suppression from persisted state"
+  ],
+  "next_phase": "gate-008b-live-work-monitor-integration"
+}

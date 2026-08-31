@@ -1,0 +1,20 @@
+{
+  "task_id": "gate-004b",
+  "parent_gate": "gate-004",
+  "derived_from": "gate-004a",
+  "title": "Remove positional coupling from current readiness",
+  "objective": "Refactor the now-centralized readiness contract so the current state is explicit rather than encoded as tuple position 0, without changing any public behavior.",
+  "allowed_paths": ["agent-lab/app.py"],
+  "protected_paths": ["agent-lab/tests/test_gate_004b.py", ".github/workflows/agent-lab.yml"],
+  "acceptance_criteria": [
+    "app.py defines private `_CURRENT_READINESS = \"ready\"`.",
+    "`_CURRENT_READINESS` is contained in READINESS_STATES.",
+    "status() returns `_CURRENT_READINESS` rather than indexing READINESS_STATES by position.",
+    "READINESS_STATES remains exactly (\"ready\", \"degraded\", \"maintenance\").",
+    "All existing public behavior remains unchanged.",
+    "All repository CI tests pass."
+  ],
+  "verification": {"command": "python3 -m unittest discover -s agent-lab/tests -v", "required": true},
+  "human_escalation": false,
+  "continuation_reason": "This is a behavior-preserving implementation refinement directly implied by Gate 004A; it does not change product semantics or public API."
+}

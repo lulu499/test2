@@ -1,0 +1,28 @@
+{
+  "gate": "gate-007",
+  "result": "PASS_DURABLE_STATE_MACHINE_PROTOCOL",
+  "human_intervention_required": false,
+  "implementation_commit": "57474eb3390f8b19ae5145b975ac05a7e23c03e6",
+  "scope": {
+    "result": "PASS",
+    "changed_files": ["agent-lab/orchestration_state.py"],
+    "allowed_paths": ["agent-lab/orchestration_state.py"],
+    "protected_paths_unchanged_by_cursor": true
+  },
+  "verification": {
+    "ci_run_id": 33281257682,
+    "ci_result": "success"
+  },
+  "verified_protocol_capabilities": [
+    "stable task and attempt identity",
+    "state validation invariants",
+    "duplicate implementation commit suppression",
+    "immutable state transitions",
+    "processed-commit audit identity",
+    "automatic correction attempt increments",
+    "retry exhaustion to HUMAN_REQUIRED",
+    "task completion preserving audit identity",
+    "preservation of unrelated state keys"
+  ],
+  "next_gate": "gate-008-work-monitor-state-machine-integration"
+}

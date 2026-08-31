@@ -1,0 +1,6 @@
+{
+  "probe": "gate-005a-retry",
+  "nonce": "WAKE-005A-R2-20260829",
+  "expected": "scheduled-chatgpt-must-read-this-and-comment-on-pr-1",
+  "branch": "chatgpt-agent-lab"
+}

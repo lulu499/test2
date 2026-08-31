@@ -1,0 +1,23 @@
+{
+  "task_id": "gate-010a",
+  "parent_gate": "gate-010",
+  "title": "Native GitHub webhook wake latency probe",
+  "objective": "Prove that a GitHub pull-request comment can wake the persistent ChatGPT Work orchestration surface without hourly polling.",
+  "repository": "lulu499/test2",
+  "pull_request": 1,
+  "trigger": {
+    "event": "new pull-request comment",
+    "exact_body": "GATE010A_TRIGGER EVENT-WAKE-010A-20260831"
+  },
+  "expected_work_response": "GATE010A_EVENT_WAKE_PASS EVENT-WAKE-010A-20260831",
+  "constraints": [
+    "Read-only with respect to GitHub after the trigger fires.",
+    "Do not contact Cursor.",
+    "Do not inspect or mutate CI.",
+    "Do not modify repository files.",
+    "Do not comment on GitHub.",
+    "Do not merge or deploy.",
+    "Deliver the result into the same Work conversation where the event-triggered task was created if the product supports it."
+  ],
+  "pass_condition": "The exact Work response appears promptly after the exact GitHub comment event, without waiting for an hourly poll."
+}

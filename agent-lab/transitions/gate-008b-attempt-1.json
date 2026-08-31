@@ -1,0 +1,12 @@
+{
+  "task_id": "gate-008b",
+  "attempt": 1,
+  "attempt_key": "gate-008b:attempt-1",
+  "status": "pass",
+  "dispatch_comment_id": 5467111621,
+  "implementation_commit": "9c142ce57bc520438da4c0bc56ac4fd0dc656179",
+  "ci_run_id": 33296594447,
+  "scope_result": "pass",
+  "review_result": "PASS_LIVE_WORK_MONITOR_STATE_MACHINE_INTEGRATION",
+  "processed_by_background_work": true
+}

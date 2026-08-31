@@ -1,0 +1,28 @@
+{
+  "task_id": "gate-010b",
+  "parent_gate": "gate-010",
+  "title": "Define deterministic fast-path event envelope",
+  "objective": "Define the repository-local event contract that an external immediate relay will later use to wake the orchestration brain without relying on ChatGPT Work polling or native Work webhooks.",
+  "allowed_paths": [
+    "agent-lab/orchestration_events.py"
+  ],
+  "protected_paths": [
+    "agent-lab/tests/test_gate_010b.py",
+    "agent-lab/state.json",
+    ".github/workflows/agent-lab.yml"
+  ],
+  "acceptance_criteria": [
+    "Define an immutable OrchestrationEvent representation for repository, pull-request number, event type, event id, commit sha, and task id.",
+    "Support at least cursor_result, ci_completed, and human_decision event types.",
+    "Provide deterministic serialization suitable for durable comparison and idempotency checks.",
+    "Provide an idempotency_key derived only from stable event identity fields.",
+    "Reject missing or empty required identifiers.",
+    "No networking, credentials, API calls, GitHub writes, Cursor calls, OpenAI calls, merges, or deployments are introduced.",
+    "All repository tests pass."
+  ],
+  "verification": {
+    "command": "python3 -m unittest discover -s agent-lab/tests -v",
+    "required": true
+  },
+  "human_escalation": false
+}

@@ -1,0 +1,19 @@
+{
+  "task_id": "gate-005a",
+  "parent_gate": "gate-005",
+  "title": "Encode the accepted readiness contract in type hints",
+  "objective": "Make the already-approved readiness-state contract explicit to static tooling without changing runtime behavior or public semantics.",
+  "allowed_paths": ["agent-lab/app.py"],
+  "protected_paths": ["agent-lab/tests/test_gate_005a.py", ".github/workflows/agent-lab.yml"],
+  "acceptance_criteria": [
+    "app.py defines ReadinessState as Literal[\"ready\", \"degraded\", \"maintenance\"].",
+    "READINESS_STATES is annotated as tuple[ReadinessState, ...] and remains exactly (\"ready\", \"degraded\", \"maintenance\").",
+    "_CURRENT_READINESS is annotated as ReadinessState and remains \"ready\".",
+    "status() has return annotation ReadinessState and still returns \"ready\".",
+    "All runtime behavior from Gates 001-004 remains unchanged.",
+    "All repository CI tests pass."
+  ],
+  "verification": {"command": "python3 -m unittest discover -s agent-lab/tests -v", "required": true},
+  "human_escalation": false,
+  "wake_test": "After dispatch, the active chat must stop. A scheduled ChatGPT run will later inspect GitHub, verify the agent result, and advance state without a user message."
+}

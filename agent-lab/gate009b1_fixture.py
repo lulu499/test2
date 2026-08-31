@@ -1,0 +1,5 @@
+MONITOR_LIFECYCLE_PROBE_A = "GATE009B_SUCCESSOR_A"
+
+
+def probe_a() -> str:
+    return MONITOR_LIFECYCLE_PROBE_A

@@ -1,0 +1,39 @@
+{
+  "task_id": "gate-002",
+  "result": "PASS_AFTER_AUTOMATIC_CORRECTION",
+  "human_intervention_required": false,
+  "attempts": [
+    {
+      "attempt": 1,
+      "commit": "dd4b931bb70524ee68681f67ad9335b13f473d21",
+      "result": "REJECTED",
+      "scope": "PASS",
+      "ci_run_id": 33266627811,
+      "ci_result": "failure",
+      "failed_tests": [
+        "test_build_info_returns_fresh_dict",
+        "test_mutation_does_not_leak"
+      ],
+      "reason": "build_info() returned shared module-level mutable state"
+    },
+    {
+      "attempt": 2,
+      "commit": "1d4765f774f1bcc7065a30421920e2c70c44414a",
+      "result": "PASS",
+      "scope": "PASS",
+      "ci_run_id": 33266659807,
+      "ci_result": "success",
+      "changed_files": [
+        "agent-lab/app.py"
+      ],
+      "reason": "shared mutable state removed; each build_info() call returns a fresh dict"
+    }
+  ],
+  "orchestrator_behavior_verified": [
+    "detected implementation failure from independent CI",
+    "diagnosed failure from test logs and diff",
+    "issued correction without human escalation",
+    "kept protected tests unchanged",
+    "independently verified corrected commit"
+  ]
+}

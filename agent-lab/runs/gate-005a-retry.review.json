@@ -1,0 +1,22 @@
+{
+  "task_id": "gate-005a-retry-wake-probe",
+  "result": "BACKGROUND_WAKE_PASS_SAME_THREAD_FAIL_GITHUB_ACTION_UNPROVEN",
+  "scheduled_task_id": "6a93451e651c8191a9ed5a9ca87f9d21",
+  "scheduled_task_run_recorded": true,
+  "observed_user_experience": {
+    "task_created_separate_chat": true,
+    "original_orchestration_chat_resumed": false
+  },
+  "github_probe": {
+    "expected_comment": "GATE005A_WAKE_PROBE_PASS WAKE-005A-R2-20260829",
+    "comment_found": false,
+    "result": "FAIL_OR_UNPROVEN"
+  },
+  "classification": {
+    "background_scheduled_execution": "PASS",
+    "same_conversation_resumption": "FAIL",
+    "scheduled_task_github_connector_action": "FAIL_OR_UNPROVEN",
+    "notification_delivery": "SEPARATE_CONCERN"
+  },
+  "conclusion": "Scheduled Tasks can wake ChatGPT independently, but they run in a separate task conversation instead of resuming the active orchestration thread. This is insufficient for seamless same-thread orchestration. GitHub connector execution from the scheduled task also remains unproven because the required heartbeat comment was not created."
+}

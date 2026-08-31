@@ -1,0 +1,14 @@
+{
+  "gate": "gate-008b-r2",
+  "result": "PASS_BACKGROUND_LOW_RISK_GITHUB_WRITE",
+  "human_intervention_required": false,
+  "probe_file": "agent-lab/gate008b-write-approval-probe.json",
+  "probe_nonce": "GATE008B-R2-WRITE-20260830",
+  "observed_result": {
+    "status": "background-write-pass",
+    "written_by_background_work": true
+  },
+  "permission_finding": "Background Work can perform low-risk GitHub writes under the current Allow low-risk actions permission mode. The earlier rejection was specific to the higher-risk authoritative state.json mutation, not to GitHub writes in general.",
+  "architecture_adjustment": "Dormant Work writes to dedicated per-attempt transition ledgers. state.json is a compacted projection reconciled by the active orchestrator, not directly overwritten by dormant Work.",
+  "next_phase": "gate-008b-r3-transition-ledger-pass"
+}

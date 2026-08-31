@@ -1,0 +1,26 @@
+{
+  "task_id": "gate-002",
+  "title": "Add build metadata without shared mutable state",
+  "objective": "Add build_info() so callers can inspect application metadata safely.",
+  "allowed_paths": [
+    "agent-lab/app.py"
+  ],
+  "protected_paths": [
+    "agent-lab/tests/test_gate_002.py",
+    ".github/workflows/agent-lab.yml"
+  ],
+  "acceptance_criteria": [
+    "app.py exports build_info().",
+    "build_info() returns exactly {\"version\": APP_VERSION, \"status\": \"ready\"}.",
+    "Every call returns a fresh dict object.",
+    "Mutating a dict returned by build_info() must not affect any later call.",
+    "Do not introduce module-level mutable state for build metadata.",
+    "Existing greeting() and version() behavior remains unchanged.",
+    "All repository CI tests pass."
+  ],
+  "verification": {
+    "command": "python3 -m unittest discover -s agent-lab/tests -v",
+    "required": true
+  },
+  "human_escalation": false
+}
