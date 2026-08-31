@@ -1,0 +1,25 @@
+{
+  "gate": "gate-009a",
+  "result": "PASS_LEDGER_RECONCILIATION_AND_MONITOR_LIFECYCLE_PLANNER",
+  "human_intervention_required": false,
+  "implementation_commit": "284816ce478ab167d51ecaf7a6b63d4ba7f2b4a8",
+  "scope": {
+    "result": "PASS",
+    "changed_files": ["agent-lab/ledger_reconciliation.py"],
+    "protected_paths_unchanged_by_cursor": true
+  },
+  "verification": {
+    "ci_run_id": 33377129319,
+    "ci_result": "success"
+  },
+  "verified_capabilities": [
+    "terminal ledger event identity",
+    "idempotent ledger reconciliation",
+    "pass reconciliation to completed state",
+    "pass reconciliation can arm one successor task",
+    "human-required terminal reconciliation",
+    "deterministic monitor lifecycle action",
+    "single-monitor count enforcement"
+  ],
+  "next_phase": "gate-009b-two-successive-tasks-same-monitor"
+}
