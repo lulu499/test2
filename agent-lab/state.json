@@ -1,15 +1,11 @@
 {
   "experiment": "chatgpt-cursor-orchestration",
-  "status": "gate-009b1-active-await-agent",
-  "last_passed_task": "gate-009a",
-  "active_task": "gate-009b1",
+  "status": "gate-010a-awaiting-native-event-trigger-creation",
+  "last_passed_task": "gate-009b-r2-wake",
+  "active_task": "gate-010a",
   "active_attempt": 1,
-  "human_required": false,
-  "last_processed_commit": null,
-  "last_processed_event": "gate-008b:attempt-1:pass",
-  "pending_action": "await-agent",
-  "retry_count": 0,
-  "max_auto_retries": 2,
+  "human_required": true,
+  "pending_action": "create-native-github-event-trigger-in-work",
   "human_decision": {
     "selected": "A",
     "contract": "status() -> str with ready/degraded/maintenance",
@@ -21,49 +17,35 @@
     "agent_to_orchestrator": "github-pr-comment-and-commit",
     "verification": "github-actions",
     "persistent_surface": "ChatGPT Work on web",
-    "dormant_wake": "hourly condition-watch polling",
-    "dormant_state_mutation": "per-attempt-low-risk-transition-ledger",
-    "authoritative_state_reconciliation": "active-orchestrator"
+    "dormant_wake_legacy": "hourly condition-watch polling",
+    "target_fast_path": "native GitHub pull-request event webhook",
+    "recovery_path": "low-frequency reconciliation monitor"
   },
   "safety": {
     "auto_merge": false,
     "production_actions": false,
     "scope_enforcement": true,
     "protected_tests_mutable_by_agent": false,
-    "dormant_work_direct_state_json_write": false
-  },
-  "gate_007": {
-    "result": "PASS_DURABLE_STATE_MACHINE_PROTOCOL",
-    "implementation_commit": "57474eb3390f8b19ae5145b975ac05a7e23c03e6",
-    "ci_run_id": 33281257682,
-    "module": "agent-lab/orchestration_state.py"
-  },
-  "gate_008": {
-    "result": "PASS_DORMANT_WORK_MONITOR_WITH_LOW_RISK_TRANSITION_LEDGER",
-    "planner_result": "PASS_WORK_MONITOR_TRANSITION_PLANNER",
-    "planner_commit": "09a279539a16de9261f20f9773ab5f9d3c23fcdb",
-    "planner_ci_run_id": 33296153019,
-    "implementation_commit": "9c142ce57bc520438da4c0bc56ac4fd0dc656179",
-    "implementation_ci_run_id": 33296594447,
-    "transition_ledger": "agent-lab/transitions/gate-008b-attempt-1.json",
-    "transition_ledger_result": "pass",
-    "processed_by_background_work": true,
-    "same_work_conversation_terminal_signal": "GATE008B_R3_LEDGER_PASS"
+    "dormant_work_direct_state_json_write": false,
+    "gate_010a_read_only_after_trigger": true
   },
   "gate_009": {
-    "phase": "009b-successor-a",
-    "planner_result": "PASS_LEDGER_RECONCILIATION_AND_MONITOR_LIFECYCLE_PLANNER",
-    "planner_commit": "284816ce478ab167d51ecaf7a6b63d4ba7f2b4a8",
-    "planner_ci_run_id": 33377129319,
+    "result": "PASS_WAKE_BLOCKED_WRITE",
     "monitor_task_id": "6a9359057af881919c96003f6ba1fefe",
-    "successor_a": {
-      "task_id": "gate-009b1",
-      "attempt_key": "gate-009b1:attempt-1",
-      "task_spec": "agent-lab/tasks/gate-009b1.json",
-      "protected_test": "agent-lab/tests/test_gate_009b1.py",
-      "transition_ledger": "agent-lab/transitions/gate-009b1-attempt-1.json"
-    },
-    "goal": "prove two successive real tasks can reuse the same persistent Work monitor without duplicate monitors or duplicate processing"
+    "same_monitor_reused": true,
+    "same_work_conversation_delivery": true,
+    "scheduled_background_execution": true,
+    "github_read": true,
+    "github_background_write": "blocked",
+    "conclusion": "Persistent Work wake is usable; unattended GitHub writes are not reliable enough to be the transition primitive."
   },
-  "next_experiment": "gate-009b-two-successive-tasks-same-monitor"
+  "gate_010": {
+    "phase": "010a-native-github-event-wake",
+    "task_spec": "agent-lab/tasks/gate-010a.json",
+    "trigger_event": "new PR #1 comment with exact body GATE010A_TRIGGER EVENT-WAKE-010A-20260831",
+    "expected_work_response": "GATE010A_EVENT_WAKE_PASS EVENT-WAKE-010A-20260831",
+    "goal": "prove immediate webhook wake of persistent Work orchestration without hourly polling",
+    "status": "awaiting-event-trigger-task-creation-in-work"
+  },
+  "next_experiment": "fire-gate-010a-github-comment-after-event-trigger-is-armed"
 }
