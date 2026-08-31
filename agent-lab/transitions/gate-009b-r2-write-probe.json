@@ -1,0 +1,7 @@
+{
+  "probe_id": "gate-009b-r2",
+  "monitor_task_id": "6a9359057af881919c96003f6ba1fefe",
+  "status": "armed",
+  "expected_write": "GATE009B_R2_WRITE_PASS",
+  "processed_by_background_work": false
+}
